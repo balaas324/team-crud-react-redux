@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { findTeamByName, retrieveTeams } from "../actions/teams"
+import MemberList from "./MemberList"
 
 const TeamList = (props) =>{
     const [currentTeam, setCurrentTeam] = useState(null)
@@ -25,10 +26,13 @@ const TeamList = (props) =>{
         setCurrentIndex(-1)
     }
 
-    const setActiveTeam=(team,index)=>{
+    const setActiveTeam=(index, team)=>{
         setCurrentTeam(team)
         setCurrentIndex(index)
-        console.log(currentIndex);
+
+        //setSearchName(team.name)
+        //dispatch(findTeamByName(team.name))
+        console.log(team.name);
     }
 
     const findByName =()=>{
@@ -64,10 +68,10 @@ const TeamList = (props) =>{
                 { teams && teams.map((team,index)=>(
                     <li 
                     className={"list-group-item" + (index === currentIndex ? " list-group-item-dark" : "")}
-                    onClick={()=>setActiveTeam(team, index)}
+                    onClick={()=>setActiveTeam(index, team)}
                     key={index}
                     >
-                        {team.name}
+                        {team.id + ". " + team.name}
                     </li>
                 ))}
             </div>
@@ -81,6 +85,13 @@ const TeamList = (props) =>{
                                 <strong>Team name:</strong>
                             </label>{" "}
                             { currentTeam.name }
+                        </div>
+
+                        <div>
+                            <label>
+                                <strong>Team id:</strong>
+                            </label>{" "}
+                            { currentTeam.id }
                         </div>
 
                         <div>
@@ -100,6 +111,8 @@ const TeamList = (props) =>{
                     </div>
                 )}
             </div>
+
+            <MemberList setActiveTeam={setActiveTeam} />
         </div>
     )
 

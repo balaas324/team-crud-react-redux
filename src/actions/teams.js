@@ -65,7 +65,7 @@ export const deleteTeam =(id)=>async(dispatch)=>{
 
 export const findTeamByName = (name) => async (dispatch) => {
     try {
-      const res = await TeamServices.findByTitle(name);
+      const res = await TeamServices.findByTeam(name);
   
       dispatch({
         type: RETRIEVE_TEAMS,

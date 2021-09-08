@@ -1,6 +1,7 @@
 import {
     CREATE_MEMBER,
     RETRIEVE_MEMBERS,
+    BELONGTO_MEMBER,
     UPDATE_MEMBER,
     DELETE_MEMBER
 } from "../actions/types"
@@ -15,6 +16,9 @@ const memberReducer = (members = initialState, action) => {
             return [...members, payload];
         
         case RETRIEVE_MEMBERS:
+            return payload
+
+        case BELONGTO_MEMBER:
             return payload
 
         case UPDATE_MEMBER:

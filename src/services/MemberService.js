@@ -4,6 +4,10 @@ const getAll =()=>{
     return http.get("/members")
 }
 
+const memberBelongsToTeam = (teamId) =>{
+    return http.get(`/members/${teamId}`)
+}
+
 const get =(id)=>{
     return http.get(`/member/${id}`)
 }
@@ -24,8 +28,11 @@ const findByTitle = (name) => {
     return http.get(`/members?name=${name}`)
 }
 
+
+
 const MemberServices = {
     getAll,
+    memberBelongsToTeam,
     get,
     create,
     update,

@@ -10,7 +10,7 @@ import Member from "./components/Member"
 import MemberList from "./components/MemberList"
 import AddTeam from './components/AddTeam';
 import Team from './components/Team';
-//import TeamList from './components/TeamList';
+import TeamList from './components/TeamList';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         
 
           <li className="nav-item">
-            <Link to={"/members"} className="nav-link">
+            <Link to={"/teams"} className="nav-link">
               Members of Teams
             </Link>
           </li>
@@ -46,14 +46,12 @@ function App() {
 
       <div className="container mt-3">  
         <Switch>
-          
-
           <Route exact path="/members" component={MemberList} />
           <Route exact path="/addmember" component={AddMember} />
           <Route path="/member/:id" component={Member} />
           <Route exact path="/addteam" component={AddTeam} />
           <Route path="/team/:id" component={Team} />
-
+          <Route exact path="/teams" component={TeamList} />
         </Switch>
       </div>
     </Router>

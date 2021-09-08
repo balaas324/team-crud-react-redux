@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { createMember } from "../actions/members";
 
 
@@ -7,29 +7,39 @@ const AddMember =()=>{
     const initialMemberState = {
         id: null,
         name: "",
-        teamName: "",
+        teamId: "",
         birthYear: "",
         injury: false
     }
     const [member, setMember] = useState(initialMemberState)
     const [submitted, setSubmitted] = useState(false)
+    const [team, setTeam] = useState([])
 
+    const teams = useSelector(state=>state.teams)
     const dispatch = useDispatch();
 
+    useEffect(()=>{
+        const getTeam = () => {
+            setTeam(teams.map(teamm=>({id: teamm.id, name:teamm.name})))
+        }
+        getTeam();
+    
+    }, [])
+    
     const handleInputChange = event => {
         const { name, value } = event.target
         setMember({...member, [name]: value})
     }
 
     const saveMember =()=>{
-        const { name, teamName, birthYear, injury } = member
+        const { name, teamId, birthYear, injury } = member
 
-        dispatch(createMember(name, teamName, birthYear, injury))
+        dispatch(createMember(name, teamId, birthYear, injury))
             .then(data=>{
                 setMember({
                     id: data.id,
                     name: data.name,
-                    teamName: data.teamName,
+                    teamId: data.teamId,
                     injury: data.injury
                 })
                 setSubmitted(true)
@@ -72,15 +82,29 @@ const AddMember =()=>{
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="teamName">Team Name</label>
+                        <label htmlFor="teamId">Team ID</label>
+                        <select 
+                        name="teamId" 
+                        id="teamId" 
+                        className="form-control"
+                        value={member.teamId}
+                        onChange={handleInputChange}
+                        >
+                            {team && team.map(team=>(
+                                <option key={team.id} value={team.id}>
+                                    {team.name}
+                                </option>
+                            ))}
+                        </select>
+
                         <input 
                         type="text" 
                         className="form-control"
-                        id="teamName"
+                        id="teamId"
                         required
-                        value={member.teamName}
+                        value={member.teamId}
                         onChange={handleInputChange}
-                        name="teamName"
+                        name="teamId"
                         />
                     </div>
 

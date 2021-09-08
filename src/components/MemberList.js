@@ -2,7 +2,6 @@ import React, { useState, useEffect, } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { retrieveMembers, findMemberByName } from "../actions/members"
 import { Link } from "react-router-dom"
-import TeamList from "./TeamList"
 
 
 
@@ -41,7 +40,6 @@ const MemberList =(props)=>{
 
     return (
         <div className="flexbox-container">
-            <TeamList />
             <div className="list row">
             <div className="col-md-8">
                 <div className="input-group-mb-3">
@@ -72,7 +70,7 @@ const MemberList =(props)=>{
                         members.map((member, index)=>(
                             <li 
                             className={"list-group-item" + (index === currentIndex ? " list-group-item-dark" : "")}
-                            onClick={()=>setActiveMember(member,index)}
+                            onClick={()=>setActiveMember(member, index)}
                             key={index}
                             >
                                 {member.name}
@@ -96,7 +94,7 @@ const MemberList =(props)=>{
                             <label>
                                 <strong>Team Name:</strong>
                             </label>{" "}
-                            { currentMember.teamName }
+                            { currentMember.team.name }
                         </div>
 
                         <div>

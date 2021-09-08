@@ -1,15 +1,16 @@
 import {
     CREATE_MEMBER,
     RETRIEVE_MEMBERS,
+    BELONGTO_MEMBER,
     UPDATE_MEMBER,
     DELETE_MEMBER
 } from "./types"
 
 import MemberServices from "../services/MemberService"
 
-export const createMember = (name, teamName, birthYear, injury) => async (dispatch) => {
+export const createMember = (name, teamId, birthYear, injury) => async (dispatch) => {
     try {
-        const res = await MemberServices.create({ name, teamName, birthYear, injury })
+        const res = await MemberServices.create({ name, teamId, birthYear, injury })
 
         dispatch({
             type: CREATE_MEMBER,
@@ -76,3 +77,15 @@ export const findMemberByName = (title) => async (dispatch) => {
     }
   };
 
+export const memberBelongsToTeam =(teamId)=>async(dispatch)=>{
+  try{
+    const res = await MemberServices.memberBelongsToTeam(teamId)
+
+    dispatch({
+      type: BELONGTO_MEMBER,
+      payload: res.data
+    })
+  } catch (err){
+    console.log(err);
+  }
+}
