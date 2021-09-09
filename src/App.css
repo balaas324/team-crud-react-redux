@@ -39,8 +39,8 @@
 
 .list {
   text-align: left;
-  max-width: 750px;
-  margin: auto;
+  max-width: 1000px;
+  margin: 10px;
 }
 
 .submit-form {

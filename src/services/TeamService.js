@@ -24,9 +24,7 @@ const findByTitle = (name) => {
     return http.get(`/teams?name=${name}`)
 }
 
-const findByTeam = (teamName) =>{
-    return http.get(`/member?teamName=${teamName}`)
-}
+
 
 const TeamServices = {
     getAll,
@@ -35,7 +33,6 @@ const TeamServices = {
     update,
     remove,
     findByTitle,
-    findByTeam
 }
 
 export default TeamServices;

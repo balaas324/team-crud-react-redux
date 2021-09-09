@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { findTeamByName, retrieveTeams } from "../actions/teams"
-import MemberList from "./MemberList"
 
 const TeamList = (props) =>{
     const [currentTeam, setCurrentTeam] = useState(null)
@@ -29,10 +28,6 @@ const TeamList = (props) =>{
     const setActiveTeam=(index, team)=>{
         setCurrentTeam(team)
         setCurrentIndex(index)
-
-        //setSearchName(team.name)
-        //dispatch(findTeamByName(team.name))
-        console.log(team.name);
     }
 
     const findByName =()=>{
@@ -42,13 +37,15 @@ const TeamList = (props) =>{
     }
 
     return (
-        <div className="list row">
-            <div className="col-md-8">
+        <div className="list">
+            <div className="list row">
+            <div className="col-md-8 ">
                 <div className="input-group-mb-3">
                     <input 
                     type="text" 
                     className="form-control" 
                     placeholder="Search by team name"
+                    value={searchName}
                     onChange={onChangeSearchName}
                     />
                     <div className="input-group-append">
@@ -62,6 +59,7 @@ const TeamList = (props) =>{
                     </div>
                 </div>
             </div>
+            <br />
 
             <div className="col-md-5">
                 <h4>Teams list</h4>
@@ -101,6 +99,25 @@ const TeamList = (props) =>{
                             { currentTeam.nation }
                         </div>
 
+                        <div>
+                            <label>
+                                <strong>Squad:</strong>
+                            </label>{" "}
+                            { currentTeam.members.length }{ currentTeam.members.length < 2 ? " persona" : " personas" }
+                        </div>
+
+                        <div>
+                            <label>
+                                <strong>Members :</strong>
+                            </label>
+                            {currentTeam.members.map(member=>(
+                                <li key={member.id}>
+                                    {member.name}
+                                </li>
+                            ))}
+                        </div>
+
+
                         <Link to={"/team/" + currentTeam.id} className="btn btn-primary">
                         Edit
                         </Link>
@@ -111,8 +128,7 @@ const TeamList = (props) =>{
                     </div>
                 )}
             </div>
-
-            <MemberList setActiveTeam={setActiveTeam} />
+            </div>
         </div>
     )
 

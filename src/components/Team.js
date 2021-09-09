@@ -50,7 +50,7 @@ const Team =(props)=>{
     const removeTeam =()=>{
         dispatch(deleteTeam(currentTeam.id))
             .then(()=>{
-                props.history.psuh("/push")
+                props.history.push("/teams")
             })
     }
 
@@ -65,7 +65,9 @@ const Team =(props)=>{
                             <label htmlFor="name">
                                 Name
                             </label>
-                            <input type="text" className="form-control" 
+                            <input 
+                            type="text" 
+                            className="form-control" 
                             id="name"
                             name="name"
                             value={currentTeam.name}
@@ -77,8 +79,10 @@ const Team =(props)=>{
                             <label htmlFor="nation">
                                 Nation
                             </label>
-                            <input type="text" className="form-control" 
-                            id="name"
+                            <input 
+                            type="text" 
+                            className="form-control" 
+                            id="nation"
                             name="nation"
                             value={currentTeam.nation}
                             onChange={handleInputChange}
@@ -103,7 +107,7 @@ const Team =(props)=>{
                 </div>
             ) : (
                 <div>
-
+                    <p>please click on team</p>
                 </div>
             )}
         </div>

@@ -21,6 +21,7 @@ const AddMember =()=>{
     useEffect(()=>{
         const getTeam = () => {
             setTeam(teams.map(teamm=>({id: teamm.id, name:teamm.name})))
+            console.log(teams);
         }
         getTeam();
     
@@ -43,7 +44,7 @@ const AddMember =()=>{
                     injury: data.injury
                 })
                 setSubmitted(true)
-                console.log(data);
+                console.log("dispatch data: " + data.id);
             })
             .catch(e=>{
                 console.log(e);
@@ -84,13 +85,16 @@ const AddMember =()=>{
                     <div className="form-group">
                         <label htmlFor="teamId">Team ID</label>
                         <select 
-                        name="teamId" 
-                        id="teamId" 
+                        type="text" 
                         className="form-control"
+                        id="teamId"
                         value={member.teamId}
                         onChange={handleInputChange}
+                        name="teamId" 
                         >
+                            <option>Choose Team</option>
                             {team && team.map(team=>(
+                                
                                 <option key={team.id} value={team.id}>
                                     {team.name}
                                 </option>
@@ -101,7 +105,6 @@ const AddMember =()=>{
                         type="text" 
                         className="form-control"
                         id="teamId"
-                        required
                         value={member.teamId}
                         onChange={handleInputChange}
                         name="teamId"
@@ -123,12 +126,12 @@ const AddMember =()=>{
 
                     <div className="form-group">
                         <label htmlFor="injury">Ready to play</label>
-                        <select 
-                        name="injury" 
+                        <select
+                        className="form-control" 
                         id="injury" 
-                        className="form-control"
                         value={member.injury}
                         onChange={handleInputChange}
+                        name="injury" 
                         >
                             <option value="true">true</option>
                             <option value="false">false</option>

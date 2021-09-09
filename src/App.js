@@ -26,7 +26,13 @@ function App() {
 
           <li className="nav-item">
             <Link to={"/teams"} className="nav-link">
-              Members of Teams
+              Teams list
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to={"/members"} className="nav-link">
+              Members list
             </Link>
           </li>
 

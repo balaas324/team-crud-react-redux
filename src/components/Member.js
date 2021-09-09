@@ -8,7 +8,7 @@ const Member = (props) => {
     const initialMemberState = {
         id: null,
         name: "",
-        temaName: "",
+        teamId: "",
         birthYear: "",
         injury: false
     }
@@ -43,7 +43,7 @@ const Member = (props) => {
         const data = {
             id: currentMember.id,
             name: currentMember.name,
-            temaName: currentMember.temaName,
+            teamId: currentMember.teamId,
             BirthYear: currentMember.birthYear,
             injury: status
         }
@@ -93,21 +93,21 @@ const Member = (props) => {
                             <input 
                             type="text" 
                             className="form-control" 
-                            id="member"
-                            name="member"
+                            id="name"
+                            name="name"
                             value={currentMember.name}
                             onChange={handleInputChange}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="teamName">Team name</label>
+                            <label htmlFor="teamId">Team id</label>
                             <input 
                             type="text" 
                             className="form-control" 
-                            id="teamName"
-                            name="teamName"
-                            value={currentMember.teamName}
+                            id="teamId"
+                            name="teamId"
+                            value={currentMember.teamId ? currentMember.teamId : ""}
                             onChange={handleInputChange}
                             />
                         </div>
@@ -126,20 +126,32 @@ const Member = (props) => {
 
                     </form>
                     {currentMember.injury ? (
-                        <button className="btn btn-warning mr-2" onClick={()=>updateStatus(false)} style={{margin: 5}}>
+                        <button type="submit" className="btn btn-warning mr-2" onClick={()=>updateStatus(false)} style={{margin: 5}}>
                             Injured
                         </button>
                     ) : (
-                        <button className="btn btn-warning mr-2" onClick={()=>updateStatus(true)} style={{margin: 5}}>
+                        <button type="submit" className="btn btn-warning mr-2" onClick={()=>updateStatus(true)} style={{margin: 5}}>
                             Ready
                         </button>
                     )}
 
-                    <button className="btn btn-success mr-2" onClick={updateContent} style={{margin: 5}}>
+                    <button 
+                    type="submit"
+                    className="btn btn-success mr-2" 
+                    onClick={updateContent} 
+                    style={{margin: 5}}
+                    
+                    >
                         Update
                     </button>
 
-                    <button className="btn btn-danger mr-2" onClick={removeMember} style={{margin: 5}}>
+                    <button 
+                    type="submit"
+                    className="btn btn-danger mr-2" 
+                    onClick={removeMember} 
+                    style={{margin: 5}}
+                    
+                    >
                         Delete
                     </button>
                 </div>

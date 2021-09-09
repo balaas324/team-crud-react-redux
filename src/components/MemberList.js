@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { retrieveMembers, findMemberByName } from "../actions/members"
 import { Link } from "react-router-dom"
 
-
-
 const MemberList =(props)=>{
     const [currentMember, setCurrentMember] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(-1)
@@ -39,7 +37,7 @@ const MemberList =(props)=>{
     }    
 
     return (
-        <div className="flexbox-container">
+        <div className="">
             <div className="list row">
             <div className="col-md-8">
                 <div className="input-group-mb-3">
@@ -94,7 +92,7 @@ const MemberList =(props)=>{
                             <label>
                                 <strong>Team Name:</strong>
                             </label>{" "}
-                            { currentMember.team.name }
+                            { currentMember.team ? currentMember.team.name : <label>Free Agent</label> }
                         </div>
 
                         <div>
