@@ -5,7 +5,7 @@ export const setMessage = (message) => ({
     payload: message
 })
 
-export const clearMessage =(message)=>({
+export const clearMessage =()=>({
     type: CLEAR_MESSAGE,
-    payload: message
+    
 })
