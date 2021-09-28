@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createMember } from "../actions/members";
+import { createMember } from "../_actions/members";
 
 
 const AddMember =()=>{
@@ -41,13 +41,15 @@ const AddMember =()=>{
                     id: data.id,
                     name: data.name,
                     teamId: data.teamId,
+                    birthYear: data.birthYear,
                     injury: data.injury
                 })
                 setSubmitted(true)
-                console.log("dispatch data: " + data.id);
+                console.log("dispatch data: created " + data.name);
             })
             .catch(e=>{
                 console.log(e);
+                throw e
             })
     }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { deleteTeam, updateTeam } from "../actions/teams"
+import { deleteTeam, updateTeam } from "../_actions/teams"
 import TeamServices from "../services/TeamService"
 
 
@@ -40,7 +40,7 @@ const Team =(props)=>{
         dispatch(updateTeam(currentTeam.id, currentTeam))
             .then(res=>{
                 console.log(res);
-                setMessage("the member")
+                setMessage(`${currentTeam.name} has been updated`)
             })
             .catch(e=>{
                 console.log(e);
@@ -104,6 +104,12 @@ const Team =(props)=>{
                     onClick={removeTeam}>
                         Delete
                     </button>
+
+                    <br />
+                    <br />
+                    <div>
+                        <p>{message}</p>
+                    </div>
                 </div>
             ) : (
                 <div>

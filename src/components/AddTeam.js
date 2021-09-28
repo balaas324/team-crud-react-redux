@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createTeam } from "../actions/teams"
+import { createTeam } from "../_actions/teams"
 
 
 

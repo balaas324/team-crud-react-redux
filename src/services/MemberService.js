@@ -1,7 +1,7 @@
 import http from "../http-common.js"
 
-const getAll =()=>{
-    return http.get("/members")
+const getAll =(params)=>{
+    return http.get("/members", { params })
 }
 
 const memberBelongsToTeam = (teamId) =>{
