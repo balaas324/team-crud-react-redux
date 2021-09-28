@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMember } from "../_actions/members";
+import { Redirect } from 'react-router-dom';
 
 
 const AddMember =()=>{
@@ -26,6 +27,16 @@ const AddMember =()=>{
         getTeam();
     
     }, [])
+
+    const currentUser = useSelector(state=>{
+        console.log(state);
+        return state.auth.user
+    })
+    console.log(currentUser);
+
+    if (!currentUser) {
+        return <Redirect to="/login" />
+    }
     
     const handleInputChange = event => {
         const { name, value } = event.target

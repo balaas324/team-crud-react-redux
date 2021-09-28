@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createTeam } from "../_actions/teams"
-
+import { Redirect } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 const AddTeam =()=>{
@@ -14,6 +15,16 @@ const AddTeam =()=>{
     const [submitted, setSubmitted] = useState(false)
 
     const dispatch = useDispatch()
+
+    const currentUser = useSelector(state=>{
+        console.log(state);
+        return state.auth.user
+    })
+    console.log(currentUser);
+
+    if (!currentUser) {
+        return <Redirect to="/login" />
+    }
 
     const handleInputChange=event=>{
         const { name, value } = event.target
