@@ -28,7 +28,7 @@ export const register = (username, email, password) => (dispatch) => {
               err.response.data &&
               err.response.data.message) ||
             err.message ||
-            err.toString() || "something is wrong"
+            err.toString() 
 
             dispatch({
                 type: REGISTER_FAIL
@@ -61,7 +61,7 @@ export const login = (username, password) => (dispatch) => {
                 err.response.data &&
                 err.response.data.message) ||
               err.message ||
-              err.toString() || "something is wrong"
+              err.toString() 
 
             dispatch({
                 type:LOGIN_FAIL
